@@ -1,5 +1,7 @@
 package one.digitalinnovation;
 
+import java.io.ObjectStreamException;
+
 public class Fila {
     private No refNoEntradaFila;
 
@@ -7,13 +9,14 @@ public class Fila {
         this.refNoEntradaFila = null;
     }
 
-    public void enqueue(No novoNo){
+    public void enqueue(Object obj){
+        No novoNo = new No(obj);
         novoNo.setRefNo(refNoEntradaFila);
         refNoEntradaFila = novoNo;
     }
 
     //Método First. Retorna o primeiro nó da fila
-    public No first(){
+    public Object first(){
         if(!this.isEmpty()){
             No primeiroNo = refNoEntradaFila;
             while(true){
@@ -25,7 +28,7 @@ public class Fila {
                 }
 
             }
-            return primeiroNo;
+            return primeiroNo.getObject();
         }
         return null;
     }
@@ -56,7 +59,7 @@ public class Fila {
         return stringRetorno;
     }
 
-    public No dequeue() {
+    public Object dequeue() {
         if (!this.isEmpty()) {
             No primeiroNo = refNoEntradaFila;
             No noAuxiliar = refNoEntradaFila;
@@ -70,7 +73,7 @@ public class Fila {
                 }
 
             }
-            return primeiroNo;
+            return primeiroNo.getObject();
         }
         return null;
     }
